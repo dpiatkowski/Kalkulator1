@@ -91,7 +91,7 @@ namespace Kalkulator1
 			this.currentLwyb_Validated(this.currentLwyb, e);
 			this.attendanceHour_Validated(this.attendanceHour, e);
 			this.number_Validated(this.attendanceValue, e);
-			if ((!this.errorValue.Visible && !this.errorHour.Visible && !this.errorOBW.Visible && !this.errorCurrentLwyb.Visible) || (!this.errorValue.Visible && !this.errorHour.Visible && !this.errorOBW.Visible && this.errorCurrentLwyb.Visible && this.errorCurrentLwyb.Text == "Liczba wyborców uprawnionych do głosowania jest mniejsza od 110% i większa od 90% szacowanej liczby wyborców (" + (this.obwodList.SelectedItem as AttendanceOBWItem).getLwyb().ToString() + ")."))
+			if ((!this.errorValue.Visible && !this.errorHour.Visible && !this.errorOBW.Visible && !this.errorCurrentLwyb.Visible) || (!this.errorValue.Visible && !this.errorHour.Visible && !this.errorOBW.Visible && this.errorCurrentLwyb.Visible && this.errorCurrentLwyb.Text == "Liczba wyborców uprawnionych do głosowania jest mniejsza od 110% i większa od 90% szacowanej liczby wyborców (" + (this.obwodList.SelectedItem as AttendanceOBWItem).ListWyborcza + ")."))
 			{
 				WaitPanel p = new WaitPanel("Wait_04", base.Size.Width, base.Size.Height);
 				p.setWaitPanel("Trwa importowanie danych", "Proszę czekać");
@@ -107,10 +107,10 @@ namespace Kalkulator1
 				{
 					if (this.attendanceHour.SelectedItem != null)
 					{
-						hour = (this.attendanceHour.SelectedItem as AttendanceItem).getName();
+						hour = (this.attendanceHour.SelectedItem as AttendanceItem).Name;
 					}
 				}
-				catch (System.Exception ex)
+				catch (Exception)
 				{
 				}
 				string value = "";
@@ -151,7 +151,7 @@ namespace Kalkulator1
 						System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.Path.GetTempPath() + "KBW\\tmp\\attendance.xml");
 						xml = sr.ReadToEnd();
 						sr.Close();
-						string uri = "attendances/readval/" + HttpUtility.UrlEncode((this.attendanceHour.SelectedItem as AttendanceItem).getName());
+						string uri = "attendances/readval/" + HttpUtility.UrlEncode((this.attendanceHour.SelectedItem as AttendanceItem).Name);
 						string post = "xml=" + HttpUtility.UrlEncode(xml);
 						Connection con = new Connection();
 						Code res = con.postReq(uri, post, 0);
@@ -178,7 +178,7 @@ namespace Kalkulator1
 				string obw = "";
 				if (this.obwodList.SelectedItem != null)
 				{
-					obw = (this.obwodList.SelectedItem as AttendanceOBWItem).getName().ToString();
+					obw = (this.obwodList.SelectedItem as AttendanceOBWItem).Name;
 				}
 				xml = xml + "<nrObwodu>" + obw + "</nrObwodu>";
 			}
@@ -259,7 +259,7 @@ namespace Kalkulator1
 				if (AttendanceOBW.Count == 2)
 				{
 					this.obwodList.SelectedIndex = 1;
-					this.klkLwyb.Text = "(" + (this.obwodList.SelectedItem as AttendanceOBWItem).getLwyb().ToString() + ")";
+					this.klkLwyb.Text = "(" + (this.obwodList.SelectedItem as AttendanceOBWItem).ListWyborcza + ")";
 				}
 			}
 			catch (System.Exception)
@@ -339,7 +339,7 @@ namespace Kalkulator1
 				}
 				else
 				{
-					if ((this.currentLwyb.Text != "" && !this.errorCurrentLwyb.Visible) || (this.errorCurrentLwyb.Visible && this.errorCurrentLwyb.Text == "Liczba wyborców uprawnionych do głosowania jest mniejsza od 110% i większa od 90% szacowanej liczby wyborców (" + (this.obwodList.SelectedItem as AttendanceOBWItem).getLwyb().ToString() + ")."))
+					if ((this.currentLwyb.Text != "" && !this.errorCurrentLwyb.Visible) || (this.errorCurrentLwyb.Visible && this.errorCurrentLwyb.Text == "Liczba wyborców uprawnionych do głosowania jest mniejsza od 110% i większa od 90% szacowanej liczby wyborców (" + (this.obwodList.SelectedItem as AttendanceOBWItem).ListWyborcza + ")."))
 					{
 						if (System.Convert.ToInt32((sender as TextBox).Text) <= System.Convert.ToInt32(this.currentLwyb.Text))
 						{
@@ -417,7 +417,7 @@ namespace Kalkulator1
 					{
 						this.errorOBW.Visible = false;
 						object item = this.obwodList.SelectedItem;
-						decimal a = System.Convert.ToDecimal((sender as TextBox).Text) / System.Convert.ToDecimal((item as AttendanceOBWItem).getLwyb()) * 100m;
+						decimal a = System.Convert.ToDecimal((sender as TextBox).Text) / System.Convert.ToDecimal((item as AttendanceOBWItem).ListWyborcza) * 100m;
 						if (a >= 90m && a <= 110m)
 						{
 							(sender as TextBox).ForeColor = System.Drawing.Color.Black;
@@ -435,7 +435,7 @@ namespace Kalkulator1
 							(sender as TextBox).ForeColor = System.Drawing.Color.DodgerBlue;
 							this.errorCurrentLwyb.ForeColor = System.Drawing.Color.DodgerBlue;
 							(sender as TextBox).BackColor = System.Drawing.SystemColors.Info;
-							this.errorCurrentLwyb.Text = "Liczba wyborców uprawnionych do głosowania jest mniejsza od 110% i większa od 90% szacowanej liczby wyborców (" + (item as AttendanceOBWItem).getLwyb().ToString() + ").";
+							this.errorCurrentLwyb.Text = "Liczba wyborców uprawnionych do głosowania jest mniejsza od 110% i większa od 90% szacowanej liczby wyborców (" + (item as AttendanceOBWItem).ListWyborcza + ").";
 							this.errorCurrentLwyb.Visible = true;
 						}
 					}
@@ -479,7 +479,7 @@ namespace Kalkulator1
 				this.errorOBW.Visible = false;
 				if (this.obwodList.SelectedItem is AttendanceOBWItem)
 				{
-					this.klkLwyb.Text = "(" + (this.obwodList.SelectedItem as AttendanceOBWItem).getLwyb().ToString() + ")";
+					this.klkLwyb.Text = "(" + (this.obwodList.SelectedItem as AttendanceOBWItem).ListWyborcza + ")";
 				}
 				if (this.errorCurrentLwyb.Visible && this.errorCurrentLwyb.Text == "Do sprawdzenia tego pola wymagane jest wybranie obwodu")
 				{

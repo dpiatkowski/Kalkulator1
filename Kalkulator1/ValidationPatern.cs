@@ -241,7 +241,7 @@ namespace Kalkulator1
 							}
 						}
 					}
-					catch (System.Exception ex_566)
+					catch (Exception)
 					{
 					}
 					result = this.check(left, right);

@@ -444,7 +444,7 @@ namespace Kalkulator1
 						result3 = new Code();
 						return result3;
 					}
-					catch (System.Net.WebException e_190)
+					catch (System.Net.WebException)
 					{
 						i++;
 						result3 = this.postReq(uri, post, i);
@@ -452,7 +452,7 @@ namespace Kalkulator1
 					}
 				}
 			}
-			catch (System.Net.WebException e_190)
+			catch (System.Net.WebException)
 			{
 				i++;
 				result3 = this.postReq(uri, post, i);

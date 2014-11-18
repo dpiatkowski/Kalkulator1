@@ -2,23 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+
 namespace Kalkulator1.validation
 {
 	public class KBWErrorProvider
 	{
-		private System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, KBWValue>> errors;
-		private System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, KBWValue>> warning;
-		private System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, KBWValue>> hardWarning;
+		private Dictionary<string, Dictionary<string, KBWValue>> errors;
+		private Dictionary<string, Dictionary<string, KBWValue>> warning;
+		private Dictionary<string, Dictionary<string, KBWValue>> hardWarning;
+
 		public KBWErrorProvider()
 		{
-			this.errors = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, KBWValue>>();
-			this.warning = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, KBWValue>>();
-			this.hardWarning = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, KBWValue>>();
+			this.errors = new Dictionary<string, Dictionary<string, KBWValue>>();
+			this.warning = new Dictionary<string, Dictionary<string, KBWValue>>();
+			this.hardWarning = new Dictionary<string, Dictionary<string, KBWValue>>();
 		}
+
 		public bool hasErrors()
 		{
-			return this.errors.Count<System.Collections.Generic.KeyValuePair<string, System.Collections.Generic.Dictionary<string, KBWValue>>>() > 0;
+			return this.errors.Count<KeyValuePair<string, Dictionary<string, KBWValue>>>() > 0;
 		}
+
 		public bool hasError(Control c)
 		{
 			bool result;
@@ -51,11 +55,11 @@ namespace Kalkulator1.validation
 		}
 		public bool hasHardWarning()
 		{
-			return this.hardWarning.Count<System.Collections.Generic.KeyValuePair<string, System.Collections.Generic.Dictionary<string, KBWValue>>>() > 0;
+			return this.hardWarning.Count<KeyValuePair<string, Dictionary<string, KBWValue>>>() > 0;
 		}
 		public bool hasWarning()
 		{
-			return this.warning.Count<System.Collections.Generic.KeyValuePair<string, System.Collections.Generic.Dictionary<string, KBWValue>>>() > 0;
+			return this.warning.Count<KeyValuePair<string, Dictionary<string, KBWValue>>>() > 0;
 		}
 		public void clearErrors()
 		{
@@ -63,15 +67,15 @@ namespace Kalkulator1.validation
 			this.warning.Clear();
 			this.hardWarning.Clear();
 		}
-		public System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, KBWValue>> getErrors()
+		public Dictionary<string, Dictionary<string, KBWValue>> getErrors()
 		{
 			return this.errors;
 		}
-		public System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, KBWValue>> getHardWarnings()
+		public Dictionary<string, Dictionary<string, KBWValue>> getHardWarnings()
 		{
 			return this.hardWarning;
 		}
-		public System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, KBWValue>> getWarnings()
+		public Dictionary<string, Dictionary<string, KBWValue>> getWarnings()
 		{
 			return this.warning;
 		}
@@ -87,7 +91,7 @@ namespace Kalkulator1.validation
 						this.errors.Remove(c.Name);
 					}
 				}
-				catch (System.Collections.Generic.KeyNotFoundException)
+				catch (KeyNotFoundException)
 				{
 				}
 			}
@@ -97,15 +101,15 @@ namespace Kalkulator1.validation
 				{
 					this.errors[c.Name][code] = new KBWValue(message, step);
 				}
-				catch (System.Collections.Generic.KeyNotFoundException)
+				catch (KeyNotFoundException)
 				{
 					try
 					{
 						this.errors[c.Name].Add(code, new KBWValue(message, step));
 					}
-					catch (System.Collections.Generic.KeyNotFoundException)
+					catch (KeyNotFoundException)
 					{
-						this.errors.Add(c.Name, new System.Collections.Generic.Dictionary<string, KBWValue>());
+						this.errors.Add(c.Name, new Dictionary<string, KBWValue>());
 						this.errors[c.Name].Add(code, new KBWValue(message, step));
 					}
 				}
@@ -142,7 +146,7 @@ namespace Kalkulator1.validation
 						}
 					}
 				}
-				catch (System.Collections.Generic.KeyNotFoundException)
+				catch (KeyNotFoundException)
 				{
 				}
 			}
@@ -163,7 +167,7 @@ namespace Kalkulator1.validation
 						this.warning[c.Name][code] = new KBWValue(message, step);
 					}
 				}
-				catch (System.Collections.Generic.KeyNotFoundException)
+				catch (KeyNotFoundException)
 				{
 					try
 					{
@@ -180,21 +184,21 @@ namespace Kalkulator1.validation
 							this.warning[c.Name].Add(code, new KBWValue(message, step));
 						}
 					}
-					catch (System.Collections.Generic.KeyNotFoundException)
+					catch (KeyNotFoundException)
 					{
 						if (type == 0 || type == 1)
 						{
-							this.errors.Add(c.Name, new System.Collections.Generic.Dictionary<string, KBWValue>());
+							this.errors.Add(c.Name, new Dictionary<string, KBWValue>());
 							this.errors[c.Name].Add(code, new KBWValue(message, step));
 						}
 						if (type == 2)
 						{
-							this.hardWarning.Add(c.Name, new System.Collections.Generic.Dictionary<string, KBWValue>());
+							this.hardWarning.Add(c.Name, new Dictionary<string, KBWValue>());
 							this.hardWarning[c.Name].Add(code, new KBWValue(message, step));
 						}
 						if (type == 3)
 						{
-							this.warning.Add(c.Name, new System.Collections.Generic.Dictionary<string, KBWValue>());
+							this.warning.Add(c.Name, new Dictionary<string, KBWValue>());
 							this.warning[c.Name].Add(code, new KBWValue(message, step));
 						}
 					}

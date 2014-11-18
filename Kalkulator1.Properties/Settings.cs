@@ -1,7 +1,3 @@
-using System;
-using System.CodeDom.Compiler;
-using System.Configuration;
-using System.Runtime.CompilerServices;
 namespace Kalkulator1.Properties
 {
 	[System.CodeDom.Compiler.GeneratedCode("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0"), System.Runtime.CompilerServices.CompilerGenerated]

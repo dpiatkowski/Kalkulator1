@@ -36,13 +36,5 @@ namespace Kalkulator1
 		{
 			return this.max;
 		}
-		public string getFieldName()
-		{
-			return this.fieldName;
-		}
-		public bool getExistRange()
-		{
-			return this.existRange;
-		}
 	}
 }

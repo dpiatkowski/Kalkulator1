@@ -988,10 +988,10 @@ namespace Kalkulator1
 					}
 				}
 			}
-			catch (System.ArgumentOutOfRangeException ex_17A7)
+			catch (ArgumentOutOfRangeException)
 			{
 			}
-			catch (System.Exception ex)
+			catch (System.Exception)
 			{
 			}
 		}

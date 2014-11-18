@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
+
 namespace Kalkulator1.validation
 {
 	public class Errors
 	{
-		private System.Collections.Generic.List<string> hardErrors;
-		private System.Collections.Generic.List<string> hardWarning;
-		private System.Collections.Generic.List<string> SoftErrors;
+		private List<string> hardErrors;
+		private List<string> hardWarning;
+		private List<string> SoftErrors;
 		public Errors()
 		{
-			this.hardErrors = new System.Collections.Generic.List<string>();
-			this.hardWarning = new System.Collections.Generic.List<string>();
-			this.SoftErrors = new System.Collections.Generic.List<string>();
+			this.hardErrors = new List<string>();
+			this.hardWarning = new List<string>();
+			this.SoftErrors = new List<string>();
 		}
 		public void addHardError(string error)
 		{
@@ -61,14 +62,7 @@ namespace Kalkulator1.validation
 			}
 			return r;
 		}
-		public int getCountHardWarning()
-		{
-			return this.hardWarning.Count;
-		}
-		public string getItemHardWarning(int index)
-		{
-			return this.hardWarning[index];
-		}
+
 		public void addValueInHardError(string value)
 		{
 			for (int i = 0; i < this.hardErrors.Count; i++)
@@ -80,6 +74,7 @@ namespace Kalkulator1.validation
 			}
 			this.hardErrors.Add(value);
 		}
+
 		public void addValueInHardWarning(string value)
 		{
 			for (int i = 0; i < this.hardWarning.Count; i++)
