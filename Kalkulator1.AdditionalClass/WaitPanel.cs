@@ -7,22 +7,16 @@ namespace Kalkulator1.AdditionalClass
 		public Panel p;
 		public Label titleLab;
 		public Label sLab;
+
 		public WaitPanel(string name, int width, int height)
 		{
 			this.createPopup("Proszę czekać", "Proszę czekać", name, width, height);
 		}
+
 		private void createPopup(string statement, string title, string name, int width, int height)
 		{
 			this.p = new Panel();
 			this.p.Name = name;
-			int w = 373;
-			int h = 196;
-			if (width < w)
-			{
-			}
-			if (height < h)
-			{
-			}
 			this.p.Size = new System.Drawing.Size(373, 196);
 			this.p.BorderStyle = BorderStyle.FixedSingle;
 			this.p.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -57,6 +51,7 @@ namespace Kalkulator1.AdditionalClass
 			this.p.Controls.Add(this.sLab);
 			this.p.Controls["label_Statement_WaitPanel_" + name].BringToFront();
 		}
+
 		public void setWaitPanel(string statement, string title)
 		{
 			this.titleLab.Text = title;
@@ -64,6 +59,7 @@ namespace Kalkulator1.AdditionalClass
 			this.sLab.Text = statement;
 			this.sLab.Refresh();
 		}
+
 		public void setVisible(bool visible)
 		{
 			this.p.Visible = visible;
@@ -71,7 +67,9 @@ namespace Kalkulator1.AdditionalClass
 			this.titleLab.Visible = visible;
 			this.titleLab.Refresh();
 			this.sLab.Refresh();
+
 		}
+
 		public void setSize(System.Drawing.Size size)
 		{
 			this.p.Size = size;
@@ -82,18 +80,22 @@ namespace Kalkulator1.AdditionalClass
 			this.titleLab.Refresh();
 			this.sLab.Refresh();
 		}
+
 		public void setLocation(System.Drawing.Point local)
 		{
 			this.p.Location = local;
 			this.p.Refresh();
 		}
+
 		public Panel getPanel()
 		{
 			return this.p;
 		}
+
 		public string getName()
 		{
 			return this.p.Name;
 		}
+
 	}
 }
