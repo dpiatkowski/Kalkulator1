@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{7851895F-EA53-4D98-AD33-13DF717C6EC0}</ProjectGuid>
@@ -8,6 +8,10 @@
     <AssemblyName>Kalkulator1</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -25,32 +29,72 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="DocX">
+      <HintPath>packages\DocX.1.0.0.13\lib\net40\DocX.dll</HintPath>
+    </Reference>
+    <Reference Include="Gnostice.Core">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\Gnostice.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Gnostice.Documents">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\Gnostice.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Gnostice.Documents.Controls.Web">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\Gnostice.Documents.Controls.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Gnostice.Documents.Controls.WinForms">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\Gnostice.Documents.Controls.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Gnostice.Documents.Controls.WPF">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\Gnostice.Documents.Controls.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Gnostice.Documents.Extensions.MVC">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\Gnostice.Documents.Extensions.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="Gnostice.XtremeFontEngine.4.0">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\Gnostice.XtremeFontEngine.4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Gnostice.XtremeImageEngine">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\Gnostice.XtremeImageEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zlib">
+      <HintPath>packages\XtremeDocumentStudio.NET.14.6\lib\net40\Ionic.Zlib.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="BouncyCastle.Crypto" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Security" />
-    <Reference Include="Gnostice.Documents" />
-    <Reference Include="DocX" />
     <Reference Include="System" />
-    <Reference Include="Gnostice.Documents.Controls.WinForms" />
-    <Reference Include="Zen.Barcode.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="DocumentFormat.OpenXml" />
     <Reference Include="System.Data" />
-    <Reference Include="Ionic.Zip" />
     <Reference Include="Newtonsoft.Json" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Zen.Barcode.Core">
+      <HintPath>packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Kalkulator1.AdditionalClass\AttendanceItem.cs" />
     <Compile Include="Kalkulator1.AdditionalClass\AttendanceOBWItem.cs" />
     <Compile Include="Kalkulator1.AdditionalClass\WaitPanel.cs" />
-    <Compile Include="Kalkulator1.AdditionalWindow\CodeSend.cs" />
-    <Compile Include="Kalkulator1.AdditionalWindow\Eksport.cs" />
-    <Compile Include="Kalkulator1.AdditionalWindow\Import.cs" />
+    <Compile Include="Kalkulator1.AdditionalWindow\CodeSend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulator1.AdditionalWindow\Eksport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulator1.AdditionalWindow\Import.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kalkulator1.instalClass\Instal.cs" />
     <Compile Include="Kalkulator1.instalClass\Version.cs" />
     <Compile Include="Kalkulator1.Properties\Resources.cs" />
@@ -63,29 +107,53 @@
     <Compile Include="Kalkulator1.validation\Errors.cs" />
     <Compile Include="Kalkulator1.validation\KBWErrorProvider.cs" />
     <Compile Include="Kalkulator1.validation\KBWValue.cs" />
-    <Compile Include="Kalkulator1\Attendance.cs" />
+    <Compile Include="Kalkulator1\Attendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kalkulator1\Certificate.cs" />
     <Compile Include="Kalkulator1\ClassMd5.cs" />
     <Compile Include="Kalkulator1\codeBar.cs" />
-    <Compile Include="Kalkulator1\Commit.cs" />
+    <Compile Include="Kalkulator1\Commit.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kalkulator1\Connection.cs" />
-    <Compile Include="Kalkulator1\EnteringCodes.cs" />
+    <Compile Include="Kalkulator1\EnteringCodes.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kalkulator1\ErrorProviderExtensions.cs" />
     <Compile Include="Kalkulator1\ErrorType.cs" />
     <Compile Include="Kalkulator1\Field.cs" />
-    <Compile Include="Kalkulator1\GetKlk.cs" />
-    <Compile Include="Kalkulator1\Login.cs" />
+    <Compile Include="Kalkulator1\GetKlk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulator1\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kalkulator1\Operation.cs" />
     <Compile Include="Kalkulator1\printProtocol.cs" />
     <Compile Include="Kalkulator1\printProtocolNew.cs" />
-    <Compile Include="Kalkulator1\PrintTest.cs" />
+    <Compile Include="Kalkulator1\PrintTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kalkulator1\Program.cs" />
-    <Compile Include="Kalkulator1\ProtocolForm.cs" />
-    <Compile Include="Kalkulator1\ProtocolsList.cs" />
-    <Compile Include="Kalkulator1\RegionList.cs" />
-    <Compile Include="Kalkulator1\SaveProtocol.cs" />
-    <Compile Include="Kalkulator1\SendProtocol.cs" />
-    <Compile Include="Kalkulator1\Start.cs" />
+    <Compile Include="Kalkulator1\ProtocolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulator1\ProtocolsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulator1\RegionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulator1\SaveProtocol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulator1\SendProtocol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulator1\Start.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kalkulator1\ValidationPatern.cs" />
     <Compile Include="Kalkulator1\ValidationRange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +175,18 @@
     <EmbeddedResource Include="Kalkulator1\SaveProtocol.resources" />
     <EmbeddedResource Include="Kalkulator1\SendProtocol.resources" />
     <EmbeddedResource Include="Kalkulator1\Start.resources" />
+    <EmbeddedResource Include="Properties\Gnostice.Documents.Framework.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

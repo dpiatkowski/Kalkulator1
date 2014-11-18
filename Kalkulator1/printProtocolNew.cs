@@ -39,7 +39,6 @@ namespace Kalkulator1
 			string organNazwa = "";
 			foreach (XmlNode xObwod in jns)
 			{
-				XmlNode xObwod;
 				if (xObwod.Attributes["nr"].InnerText == obw)
 				{
 					foreach (XmlNode xInst in xObwod)
